@@ -11,7 +11,7 @@ import os
 # UWG will look for the .epw file in the UWG/resources/epw folder,
 # and the .uwg file in the UWG/resources/parameters folder.
 
-epw_filename = "ERA5_Toronto_2015.epw"
+epw_filename = "ERA5-Toronto-2020.epw"
 param_filename_1 = "initialize_Toronto_1.uwg"         # .uwg file name
 param_filename_2 = "initialize_Toronto_2.uwg"         # .uwg file name
 param_filename_3 = "initialize_Toronto_3.uwg"         # .uwg file name
@@ -25,7 +25,7 @@ param_filename_10 = "initialize_Toronto_10.uwg"         # .uwg file name
 param_filename_11 = "initialize_Toronto_11.uwg"         # .uwg file name
 param_filename_12 = "initialize_Toronto_12.uwg"         # .uwg file name
 
-case_name = "Toronto-2015"
+case_name = "Toronto-2020"
 
 # Initialize the UWG object and run the simulation
 
