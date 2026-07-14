@@ -7,7 +7,6 @@ import random
 import sys
 import os
 import numpy
-import matplotlib.pyplot as plt
 from UWG import UWG
 
 def EconomicGHGAnalysis(RvalRoofBase, RvalWallBase, opt_RvalWall, opt_RvalRoof, opt_A_PV, opt_A_WT,

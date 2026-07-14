@@ -11,7 +11,7 @@ def Update_LocationSummary(buildingtype, opt_RvalWall, opt_RvalRoof):
     DIR_DOE_PATH = os.path.join(DIR_CURR,"resources","DOERefBuildings")
     file_doe_name_location = os.path.join("{}".format(DIR_DOE_PATH), "BLD{}".format(buildingtype),"BLD{}_LocationSummary.csv".format(buildingtype))
     print (file_doe_name_location)
-    df = pandas.read_csv(file_doe_name_location)
+    df = pandas.read_csv(file_doe_name_location, encoding='latin1')
 
     # Only over write R values if the variable was chosen in the variable space
     if opt_RvalWall != None:
@@ -20,4 +20,4 @@ def Update_LocationSummary(buildingtype, opt_RvalWall, opt_RvalRoof):
         df.iloc[16, -1] = opt_RvalRoof
 
     # Save the revised version of the CSV file
-    df.to_csv(file_doe_name_location, index=False)
+    df.to_csv(file_doe_name_location, index=False, encoding='latin1')

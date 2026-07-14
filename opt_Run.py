@@ -14,6 +14,7 @@ from VCWG150Optimization import opt_VCWG
 from EconomicGHGAnalysis import EconomicGHGAnalysis
 
 # Set up the logging process to file
+os.makedirs("Output", exist_ok=True)
 logging.basicConfig(filename='Output/Optimization.log', encoding='utf-8', level=logging.DEBUG)
 logging.info('Starting Optimization ...')
 
@@ -49,7 +50,7 @@ DIR_CURR = os.path.abspath(os.path.dirname(__file__))
 DIR_DOE_PATH = os.path.join(DIR_CURR, "resources", "DOERefBuildings")
 file_doe_name_location = os.path.join("{}".format(DIR_DOE_PATH), "BLD{}".format(buildingtype),
                                       "BLD{}_LocationSummary.csv".format(buildingtype))
-df = pd.read_csv(file_doe_name_location)
+df = pd.read_csv(file_doe_name_location, encoding='latin1')
 
 RvalRoofBase = df.iloc[16, -1]
 RvalWallBase = df.iloc[14, -1]

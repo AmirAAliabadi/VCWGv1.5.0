@@ -16,7 +16,7 @@ def starting_pop(options_space, n_pop, n_var):
 
     for i in range(n_pop):
         for ind in options_space:
-            pop[ind].iloc[i] = random.sample(options_space[ind], 1)[0]
+            pop.loc[i, ind] = random.sample(list(options_space[ind]), 1)[0]
     return pop
 
 # Generate the next generation if the condition meet the convergence in the inner loop
@@ -26,7 +26,7 @@ def out_pop(options_space, n_pop, n_var, n_change, elite):
 
     for i in range(n_change):
         for ind in options_space:
-            pop[ind].iloc[i] = random.sample(options_space[ind], 1)[0]
+            pop.loc[i, ind] = random.sample(list(options_space[ind]), 1)[0]
     pop.iloc[-1] = elite
     return pop
 

@@ -3,8 +3,6 @@ import random
 import sys
 import os
 import numpy
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 
 #Define file names
 

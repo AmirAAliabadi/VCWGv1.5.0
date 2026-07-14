@@ -7,8 +7,6 @@ import random
 import sys
 import os
 import numpy
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 
 def PostProcess2Serial(Adv_ene_heat_mode, outputFileName):
 
