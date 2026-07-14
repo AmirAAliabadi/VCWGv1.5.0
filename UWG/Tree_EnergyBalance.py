@@ -1,6 +1,5 @@
 import numpy
 import math
-import matplotlib.pyplot as plt
 
 '''
 Calculate tree temperature, i.e. leaves energy balance, and tree energy fluxes

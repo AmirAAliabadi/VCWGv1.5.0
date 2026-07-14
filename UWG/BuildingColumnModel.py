@@ -242,3 +242,4 @@ class BuildingCol:
         evb = Cdrag*(abs(vett)**3)
 
         return uva,vva, uvb, vvb, tva, tvb, evb
+

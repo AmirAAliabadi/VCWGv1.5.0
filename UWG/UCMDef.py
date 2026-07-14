@@ -190,7 +190,7 @@ class UCMDef(object):
         Q = (self.roadArea)*(self.sensAnthrop + self.treeSensHeat*self.HighVegCover)
 
         # Building energy output to canyon, in terms of absolute (total) values
-        for j in xrange(len(BEM)):
+        for j in range(len(BEM)):
             # Call element of building energy model (BEM)
             building = BEM[j].building
             wall = BEM[j].wall
@@ -244,7 +244,7 @@ class UCMDef(object):
         # Building energy output to canyon, per m^2 of urban area
         T_can = copy.copy(self.canTemp)
 
-        for j in xrange(len(BEM)):
+        for j in range(len(BEM)):
             # total ventilation volumetric flow rate per building footprint area [m^3 s^-1 m^-2]
             V_vent = BEM[j].building.vent*BEM[j].building.nFloor
             # total infiltration volumetric flow rate per building footprint area [m^3 s^-1 m^-2]
@@ -277,3 +277,4 @@ class UCMDef(object):
 
         # Calculate urban sensible heat [W m^-2]
         self.sensHeat = self.Q_wall + self.Q_road + self.Q_vent + self.Q_window + self.Q_hvac + self.Q_traffic + self.treeSensHeat + self.Q_roof
+

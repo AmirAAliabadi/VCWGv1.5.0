@@ -2,9 +2,6 @@ import os
 import numpy
 import math
 from pprint import pprint
-from scipy.interpolate import interp1d
-import matplotlib.pyplot as plt
-from scipy.integrate import odeint
 import copy
 
 '''
@@ -660,7 +657,7 @@ class RadiationFunctions(object):
         else:
             Cveg = 0
 
-        ai = [agveg,agbare,agimp,aw,aw,0]
+        ai = numpy.array([agveg, agbare, agimp, aw, aw, 0.0], dtype=float)
 
         # View factor matrix to solve for infinite reflections equation
         Tij = numpy.array([[1,0,0, -agveg*F_gw_nT*Cveg, -agveg*F_gw_nT*Cveg, -agveg*F_gs_nT*Cveg],
@@ -699,10 +696,7 @@ class RadiationFunctions(object):
         # Incoming radiation [W m^-2]
         A_i1	=	numpy.dot(Tij2,B_i)+SWRdir_i
         # Incoming radiation [W m^-2]
-        A_i			=	B_i/ai
-        for i in range(0,len(ai)):
-            if ai[i] == 0:
-                A_i[i] = A_i1[i]
+        A_i = numpy.divide(B_i, ai, out=A_i1.copy(), where=ai != 0)
         # Assumption: The sky has a fixed emission of LWR. Hence, Qnet is 0.
         A_i[5]		=	0
         # Absorbed shortwave radiation at ech surface Qnet_i
@@ -886,7 +880,7 @@ class RadiationFunctions(object):
         else:
             Cveg = 0
 
-        ai = [agveg, agbare, agimp, aw, aw, at, 0]
+        ai = numpy.array([agveg, agbare, agimp, aw, aw, at, 0.0], dtype=float)
 
         # View factor matrix to solve for infinite reflections equation
         Tij = numpy.array([[1,0,0, -agveg*F_gw_T*Cveg, -agveg*F_gw_T*Cveg, -agveg*F_gt_T*Cveg, -agveg*F_gs_T*Cveg],
@@ -929,10 +923,7 @@ class RadiationFunctions(object):
         # Incoming radiation [W m^-2]
         A_i1 = numpy.dot(Tij2, B_i) + SWRdir_i
         # Incoming radiation [W m^-2]
-        A_i = B_i / ai
-        for i in range(0, len(ai)):
-            if ai[i] == 0:
-                A_i[i] = A_i1[i]
+        A_i = numpy.divide(B_i, ai, out=A_i1.copy(), where=ai != 0)
         A_i[6] = 0  # Assumption: The sky has a fixed emission of LWR. Hence, Qnet is 0.
         # Absorbed shortwave radiation at ech surface Qnet_i
         Qnet_i = A_i - B_i
@@ -1289,6 +1280,7 @@ class RadiationFunctions(object):
         LWR_Rural.LWRabsRural = rural_infra
 
         return SWR_Rural,LWR_Rural
+
 
 
 

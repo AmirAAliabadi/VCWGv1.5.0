@@ -70,8 +70,9 @@ class SimParam(object):
             self.day += 1
             self.julian = self.julian + 1
             self.secDay = 0.
-            for j in xrange(12):
+            for j in range(12):
                 if self.is_near_zero(self.julian - self.inobis[j]):
                     self.month = self.month + 1
                     self.day = 1
         self.hourDay = int(math.floor(self.secDay/3600.))       # 0 - 23hr
+

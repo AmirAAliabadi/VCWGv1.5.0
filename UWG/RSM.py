@@ -2,8 +2,16 @@ import os
 import numpy
 import math
 from pprint import pprint
-from scipy.interpolate import interp1d
-from scipy.integrate import odeint
+try:
+    from scipy.interpolate import interp1d
+except ImportError:
+    def interp1d(x, y):
+        x = numpy.asarray(x, dtype=float)
+        y = numpy.asarray(y, dtype=float)
+        order = numpy.argsort(x)
+        x = x[order]
+        y = y[order]
+        return lambda xi: numpy.interp(xi, x, y)
 
 '''
 Rural model: The Monin-Obukhov Similarity Theory (MOST) is used to solve for the vertical profile of potential temperature
@@ -83,12 +91,12 @@ class RSMDef(object):
                                      0.5 * self.dz) ** (1. / (self.parameter.r / self.parameter.cp))
 
         # Calculate the real temperature profile [K]
-        for iz in xrange(self.nz):
+        for iz in range(self.nz):
             self.tempRealProf[iz] = self.T_rural[iz] * \
                                     (self.presProf[iz] / self.forc.pres) ** (self.parameter.r / self.parameter.cp)
 
         # Calculate the density profile [kg m^-3]
-        for iz in xrange(self.nz):
+        for iz in range(self.nz):
             self.densityProfC[iz] = self.presProf[iz] / self.parameter.r / self.tempRealProf[iz]
 
         # Temperature at the lower bound of integral

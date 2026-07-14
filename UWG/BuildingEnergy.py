@@ -1,5 +1,5 @@
 
-from Psychrometrics import psychrometrics, moist_air_density
+from .Psychrometrics import psychrometrics, moist_air_density
 import logging
 import numpy
 import math
@@ -681,3 +681,4 @@ class Building(object):
         # Calculate total gas consumption per unit floor area [W m^-2] which is equal to gas consumption per unit floor area +
         # energy consumption for domestic hot water per unit floor area + energy consumption of the heating system per unit floor area
         self.GasTotal = BEM.Gas + (massFlowRateSWH*CpH20*(T_hot - forc.waterTemp)/self.nFloor)/self.heatEff + self.heatConsump/self.nFloor
+

@@ -1,14 +1,13 @@
 import numpy
 import math
-import matplotlib.pyplot as plt
 
-from BuildingColumnModel import BuildingCol
-from DragTurb import CdTurb
+from .BuildingColumnModel import BuildingCol
+from .DragTurb import CdTurb
 #from cdturbWF import CdTurbWF
-from Shear import Shear
-from Buoyancy import Buoyancy
-from NumericalSolver import Diff
-from Invert import Invert
+from .Shear import Shear
+from .Buoyancy import Buoyancy
+from .NumericalSolver import Diff
+from .Invert import Invert
 
 """
 Column Model for momentum, turbulent kinetic energy, temperature, and specific humidity in the urban environment

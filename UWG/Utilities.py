@@ -20,11 +20,9 @@ def zeros(h, w):
 def read_csv(file_name_):
     # open csv file and read
     if os.path.exists(file_name_):
-        file_ = open(file_name_,"r")
-        gen_ = csv_reader(file_, delimiter=",")
-        L = map(lambda r: r,gen_)
-        file_.close()
-        return L
+        with open(file_name_, "r") as file_:
+            gen_ = csv_reader(file_, delimiter=",")
+            return list(gen_)
     else:
         raise Exception("File name: '{}' does not exist.".format(file_name_))
 
@@ -48,13 +46,14 @@ def str2fl(x):
             return (s_)
 
     fl_lst = []
-    if isinstance(x[0], basestring):                # Check if list of strings, then sent to conversion
-        for xi in xrange(len(x)):
+    if isinstance(x[0], str):                       # Check if list of strings, then sent to conversion
+        for xi in range(len(x)):
             fl_lst.append(helper_to_fl(x[xi]))
     elif type(x[0]) == type([]):                    # Check if list of lists, then recurse
-        for xi in xrange(len(x)):
+        for xi in range(len(x)):
             fl_lst.append(str2fl(x[xi]))
     else:
         return False
 
     return fl_lst
+
