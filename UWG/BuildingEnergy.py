@@ -156,7 +156,7 @@ class Building(object):
                 beta_pv, A_pv, eta_pv, COP_hp_min, COP_hp_max, T_hp_min, T_hp_max,
                 A_wt, eta_wt, S_wt_min, S_wt_max, WindRoof, V_pcm, l_pcm, T_melt, rural):
 
-        self.logger.debug("Logging at {} {}".format(__name__, self.__repr__()))
+        # self.logger.debug("Logging at {} {}".format(__name__, self.__repr__()))
 
         # Building Energy Model
         self.ElecTotal = 0.0                            # total electricity consumption - [W m^-2] of floor
@@ -207,7 +207,7 @@ class Building(object):
         # Set temperature set points according to night/day set points in building schedule & simTime; need the time in [hr]
         isEqualNightStart = self.is_near_zero((simTime.secDay/3600.) - parameter.nightSetStart)
         if simTime.secDay/3600. < parameter.nightSetEnd or (simTime.secDay/3600. > parameter.nightSetStart or isEqualNightStart):
-            self.logger.debug("{} Night set points @{}".format(__name__,simTime.secDay/3600.))
+            # self.logger.debug("{} Night set points @{}".format(__name__,simTime.secDay/3600.))
 
             # Set point temperatures in [K]
             T_cool = self.coolSetpointNight
@@ -216,7 +216,7 @@ class Building(object):
             # Internal heat per unit building footprint area [W m^-2]
             self.intHeat = self.intHeatNight * self.nFloor
         else:
-            self.logger.debug("{} Day set points @{}".format(__name__,simTime.secDay/3600.))
+            # self.logger.debug("{} Day set points @{}".format(__name__,simTime.secDay/3600.))
 
             # Set point temperatures in [K]
             T_cool = self.coolSetpointDay
